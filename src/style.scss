@@ -1,0 +1,552 @@
+//Tasks: 
+// 2 - Clean CSS, JS and HTMl from garbage
+// 3 - Then transfer to other Pen and make it interactive
+
+// Colors
+$black: #242424;
+$grey0: #646464;
+$grey1: #aaa;
+$white: white;
+
+// Other Variables
+
+$imagePanelTransitionDuration: 0.5s;
+$imagePanelTransitionEasing: ease-in-out; 
+$imagePanelTransition: #{$imagePanelTransitionDuration} #{$imagePanelTransitionEasing};
+
+
+$info-hover-duration: 0.25s;
+$info-initialTranslate: -30%;
+$info-inset: 33.333333%;
+
+// Height Percentages
+$horizontal: 62.5%;
+$vertical: 125%;
+$square: 100%;
+
+// Images dimensions 
+// Images need dimension variables because margin top is based on previus image height(which is based on width)
+
+$image1Width: 100%;
+$image1Height: $horizontal;
+$imageIndent: $image1Height / 4;
+
+$image2Width: 66.666666%;
+$image2Height: $vertical;
+
+$image3Width: 100%;
+$image3Height: $square;
+
+$image4Width: 133.333333%;
+$image4Height: $horizontal;
+
+$image5Width: 66.666666%;
+$image5Height: $vertical;
+
+$image6Width: 83.333333%;
+$image6Height: $square;
+
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+$background: $white;
+.list {
+  display: inline-flex;
+  flex-direction: row;
+}
+.left, .right {
+  display: inline-block;
+  width: 50%;
+}
+
+$hover-timing: 0.25s;
+.info {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity #{$info-hover-duration} ease-in-out, transform #{$info-hover-duration} ease-in-out, visibility #{$info-hover-duration} ease-in-out;
+  transform: translateY($info-initialTranslate);
+  top: calc(50%);
+  z-index: 2;
+  .left & {
+    left: 66.66666%;
+    left: 100%;
+  }
+  .right & {
+    right: 66.666666%;
+    right: 100%;
+  }
+  .image:hover &, .image.active & {
+    opacity: 1;
+    transform: translateY(-50%);
+    visibility: visible;
+  }
+  .image.active & {
+    // Start after panel
+    transition-delay: $imagePanelTransitionDuration;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY($info-initialTranslate);
+  }
+  &-title {
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: left;
+    font-size: 140px;
+    white-space: nowrap;
+    color: $black;
+    mix-blend-mode: difference;
+    line-height: 0.9em;
+    overflow: hidden;
+    .left & {
+      transform: translateX(-#{$info-inset});
+      text-align: left;
+    }
+    .right & {
+      transform: translateX(#{$info-inset});
+      text-align: right;
+    }
+    // Text inside image
+    .img &{
+      color: white;
+    }
+  }
+  &-tagline, &-view {
+    margin: 0;
+    text-align: left;
+    text-transform: lowercase;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    .left & {
+      margin-left: 10px;
+      text-align: left;
+    }
+    .right & {
+      margin-right: 10px;
+      text-align: right;
+    }
+  }
+  &-tagline{
+    font-size: 18px;
+    letter-spacing: 0.5em;
+  }
+  &-view {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    letter-spacing: 0.25em;
+    color: $grey0;
+    .right & {
+      justify-content: flex-end;
+    }
+    & .line {
+      width: 50px;
+      height: 2px;
+      display: inline-block;
+      margin: 0;
+      margin-right: 10px;
+      border: none;
+      border-bottom: 1px solid $grey1;
+      border-radius: 15rem;
+      .right & {
+        // margin-left: 10px; text kinda has a margin
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .info {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity #{$info-hover-duration} ease-in-out, transform #{$info-hover-duration} ease-in-out, visibility #{$info-hover-duration} ease-in-out;
+    transform: translateY($info-initialTranslate);
+    top: calc(50%);
+    z-index: 2;
+    .left & {
+      left: 66.66666%;
+      left: 100%;
+    }
+    .right & {
+      right: 66.666666%;
+      right: 100%;
+    }
+    .image:hover &, .image.active & {
+      opacity: 1;
+      transform: translateY(-50%);
+      visibility: visible;
+    }
+    .image.active & {
+      // Start after panel
+      transition-delay: $imagePanelTransitionDuration;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY($info-initialTranslate);
+    }
+    &-title {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: left;
+      font-size: 56px;
+      white-space: nowrap;
+      color: $black;
+      mix-blend-mode: difference;
+      line-height: 0.8em;
+      overflow: hidden;
+      .left & {
+        transform: translateX(-#{$info-inset});
+        text-align: left;
+      }
+      .right & {
+        transform: translateX(#{$info-inset});
+        text-align: right;
+      }
+      // Text inside image
+      .img &{
+        color: white;
+      }
+    }
+    &-tagline, &-view {
+      margin: 0;
+      text-align: left;
+      text-transform: lowercase;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      .left & {
+        margin-left: 10px;
+        text-align: left;
+      }
+      .right & {
+        margin-right: 10px;
+        text-align: right;
+      }
+    }
+    &-tagline{
+      font-size: 12px;
+      letter-spacing: 0.5em;
+    }
+    &-view {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      letter-spacing: 0.25em;
+      color: $grey0;
+      .right & {
+        justify-content: flex-end;
+      }
+      & .line {
+        width: 25px;
+        height: 2px;
+        display: inline-block;
+        margin: 0;
+        margin-right: 10px;
+        border: none;
+        border-bottom: 1px solid $grey1;
+        border-radius: 15rem;
+        .right & {
+          // margin-left: 10px; text kinda has a margin
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .info {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity #{$info-hover-duration} ease-in-out, transform #{$info-hover-duration} ease-in-out, visibility #{$info-hover-duration} ease-in-out;
+    transform: translateY($info-initialTranslate);
+    top: calc(50%);
+    z-index: 2;
+    .left & {
+      left: 66.66666%;
+      left: 100%;
+    }
+    .right & {
+      right: 66.666666%;
+      right: 100%;
+    }
+    .image:hover &, .image.active & {
+      opacity: 1;
+      transform: translateY(-50%);
+      visibility: visible;
+    }
+    .image.active & {
+      // Start after panel
+      transition-delay: $imagePanelTransitionDuration;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY($info-initialTranslate);
+    }
+    &-title {
+      margin: 0;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: left;
+      font-size: 36px;
+      white-space: nowrap;
+      color: $black;
+      mix-blend-mode: difference;
+      line-height: 0.8em;
+      overflow: hidden;
+      .left & {
+        transform: translateX(-#{$info-inset});
+        text-align: left;
+      }
+      .right & {
+        transform: translateX(#{$info-inset});
+        text-align: right;
+      }
+      // Text inside image
+      .img &{
+        color: white;
+      }
+    }
+    &-tagline, &-view {
+      margin: 0;
+      text-align: left;
+      text-transform: lowercase;
+      font-weight: 400;
+      letter-spacing: 0.09em;
+      .left & {
+        margin-left: 10px;
+        text-align: left;
+      }
+      .right & {
+        margin-right: 10px;
+        text-align: right;
+      }
+    }
+    &-tagline{
+      font-size: 8px;
+      letter-spacing: 0.1em;
+    }
+    &-view {
+      font-size: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      letter-spacing: 0.25em;
+      color: $grey0;
+      .right & {
+        justify-content: flex-end;
+      }
+      & .line {
+        width: 10px;
+        height: 2px;
+        display: inline-block;
+        margin: 0;
+        margin-right: 10px;
+        border: none;
+        border-bottom: 1px solid $grey1;
+        border-radius: 15rem;
+        .right & {
+          // margin-left: 10px; text kinda has a margin
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+.img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  &::before {
+    transition: background-color #{$hover-timing} ease-in-out;
+    display: block;
+    content: '';
+    background-color: rgba(0,0,0,0);
+  }
+  .image:hover &::before {
+    background-color: rgba(0,0,0,0.2);
+  }
+  .image.active &::before {
+    background-color: rgba(0,0,0,0);
+  }
+  &-vert::before {
+    padding-bottom: $vertical;
+  }
+  &-hor::before {
+    padding-bottom: $horizontal;
+  }
+  &-square::before {
+    padding-bottom: $square;
+  }
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: -1;
+}
+
+
+.image {
+  position: relative;
+  visibility: visible;
+  transition: visibility #{$imagePanelTransition};
+  &:hover {
+    cursor: pointer;
+  }
+  &.close {
+    visibility: hidden;
+  }
+}
+.panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transform-origin: left 50%;
+  background: $background;
+  z-index: 1;
+  transform: scaleX(1);
+  transition: transform #{$imagePanelTransition};
+  // Transition Delay is calculated by js
+  .close & {
+    transition-delay: 0s !important;
+    transform: scaleX(1) !important;
+  }
+}
+$margin: 100px;
+
+// Thanks to scss variables i'm able to change height and everything will update accordingly
+// Allowed withs are 66.3% 83.3% 100% and 133.3%
+@function find-margin($prevWidth,$prevHeight,$prevIndent,$myIndent) {
+  $unitlessWidth: $prevWidth/100%;
+  $unitlessHeight: $prevHeight/100%;
+  $unitlessPrevIndent: $prevIndent/100%;
+  $unitlessIndent: $myIndent/100%;
+  @return percentage(($unitlessHeight * $unitlessWidth) - $unitlessPrevIndent - $unitlessIndent); 
+}
+@function col-to-percentage($col) {
+  $max-col: 12;
+  @return percentage($col / $max-col);
+}
+
+
+.image-1 {
+  width: 100%;
+  // Use data from image-6
+  margin-top: find-margin($image6Width,$image6Height,$imageIndent,0%);
+  // height = 62.5%
+    & .info {
+      // Should recaulculate this to make sure
+      top: 37.5%;
+    }
+  &:nth-child(1){
+    margin-top: 0%;
+  }
+}
+
+.image-2 {
+  width: $image2Width;
+  margin-top: find-margin($image1Width,$image1Height,0%,$imageIndent);
+}
+
+
+.image-3 {
+  // Margin top = prevheight(vert = 125% of 66%)(82.5) - prevIdentation(1/4) - MyIdentation(1/4)
+  // ($image2Height * $image2Width) / 100
+  margin-top: find-margin($image2Width,$image2Height,$imageIndent,$imageIndent);
+  width: $image3Width;
+  transform: translateX(#{col-to-percentage(2)});
+}
+.image-4 {
+  margin-top:  find-margin($image3Width,$image3Height,$imageIndent,$imageIndent);
+  transform: translateX(-25%);
+  width: $image4Width;
+}
+
+.image-5 {
+  width: $image5Width;
+  //Margin-Top = prevHeight(62.5% of 125%) - (1/4 of 62.25%) - (1/4 of 62.25%) 
+  margin-top: find-margin($image4Width,$image4Height,$imageIndent,$imageIndent);
+  margin-left: #{col-to-percentage(4)};
+}
+// height and width is on top of image-1
+.image-6 {
+  width: $image6Width;
+  // mt = (125% of 66.666666%)  - (1/4 of 62.25%) - (1/4 of 62.25%) 
+  margin-top: find-margin($image5Width,$image5Height,$imageIndent,$imageIndent);
+  & .info {
+    // In other images, the whitespace center and image center is the same.
+    // Since, Image-1 has to inset, the this is not the case here.
+    // To find whitespace center we need to do some calculations
+    // First, calculate inset. Since inset was calculated using 100% width
+    // And .info top is calculated with .image-6 width. We need to convert inset
+    // so it uses .image-6 width
+    // So, (15.625% * 100) / 87.5% = 17.857142;
+    // Then, add the inset, and calculate middle of rest of height;
+    // Then calculate the center of the height widhtout the indent, and then add the indent
+    // top = ((100% - inset(^^^^) )/ 2)(41.071429) + inset(^^^);
+    $fixedIndent: (15.625% * 100) / 87.5%;
+    top:  ((100% - $fixedIndent) / 2) + $fixedIndent;
+  }
+}
+.right {
+  .image:nth-child(3n + 1) .inner{
+    background-image: url("../Images/4.jpg");
+  }
+  .image:nth-child(3n + 2) .inner {
+  background-image: url("../Images/5.jpg");
+  }
+  .image:nth-child(3n) .inner {
+  background-image: url("../Images/3.jpg");
+    background-position-x: 50%;
+  }
+}
+
+.left {
+  
+  .image:nth-child(3n + 1) .inner{
+    background-image: url("../Images/6.jpg");
+    
+  }
+  .image:nth-child(3n + 2) .inner {
+  background-image: url("../Images/1.jpg");
+  }
+  .image:nth-child(3n) .inner {
+  background-image: url("../Images/logo.jpg");
+    background-position-x: 50%;
+  }
+  
+}
+
+.instagram-logo {
+  path {
+    fill: rgb(148, 148, 148);
+  }
+  .logo {
+    fill: rgb(148, 148, 148);
+  }
+}
+@media screen and (max-width: 720px) {
+  .instagram-logo {
+    width: 24px;
+    height: 24px;
+  }
+}
+
